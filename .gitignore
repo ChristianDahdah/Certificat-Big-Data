@@ -1,0 +1,9 @@
+*.pdf
+*.pptx
+*.mp4
+*.md
+*.RData
+*.Rhistory
+Calepins/
+Documents/
+Wikistat introduction to R/

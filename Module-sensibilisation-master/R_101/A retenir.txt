@@ -1,0 +1,221 @@
+#value affection will be: all column 1, then column 2 then ...
+A = matrix(1:15,ncol=5);
+
+
+#value affection will be: all row 1, then row 2 then ...
+B = matrix(1:15,nc=5,byrow=TRUE) ;
+
+
+# Base de donnée ou data frame, tableau contenant des vecteurs de types
+# éventuellement différents 
+taille = c(147, 132, 156, 167, 156, 140)
+poids = c( 50, 46, 47, 62, 58, 45)
+sexe = c("M","F","F","M","M","F")
+
+H = data.frame(taille,poids,sexe)
+H
+#For median - ecart-type w osas statistis
+summary(H) 
+plot(H$poids,H$taille)
+
+
+
+
+
+
+---------------------------------------
+
+# Estimation
+
+# Generate 10 numbers of normal distribution with a mean of 80 and standard deviation of 5
+Y=rnorm(n,80,5)# génération 
+Y
+mean(Y)
+sd(Y)
+# mean's standard deviation
+sd(Y)/sqrt(length(Y)
+
+summary(Y) # give min, max, mean, 1rst/3rd quartile, median
+boxplot # gives summary(Y) but in a figure
+
+# Histogramme de densité
+hist(Y, probability=T, col="blue") # probability = True yaane badel ma yhot l frequence bihot l probabilite
+
+# estimation par la méthode du noyau
+lines(density(Y), col="red", lwd=2)
+
+# tracer la loi théorique / exacte d'une loi comme normal/bionomial ...
+x=1:100
+curve(dnorm(x,mean=80,sd=5),add=TRUE,col="green",lwd=2)
+
+
+---------------------------------------
+
+# Loi des grands nombres
+
+n=100
+# matrice de nombres aléatoires de
+# 10 colonnes et n lignes
+Y=matrix(rnorm(n*10,80,5),n,10)
+# moyenne de chaque colonne
+apply(Y,2,mean)
+mean(apply(Y,2,mean))# moyenne des moyennes, le 2 indique parcourir par colonne, le 1 c'est donc par row
+# écart-type de chaque colonne
+apply(Y,2,sd)
+mean(apply(Y,2,sd))# moyenne des écarts-types
+
+
+---------------------------------------
+
+# Théorème de la limite centrale
+
+# IMPORTANT CONCLUSION WITH HISTOGRAMME: 
+# The sum of vectors of uniform distribution gives a normal distribution (run code to understand better) 
+
+n=1000
+N=12
+X=rep(0,n) # creates a 0 vector of length n 
+# n itérations
+for (i in 1 : n)
+  X[i]=sum(runif(N)) # runif(N, min = 0, max = 1) give a vector of size N with a uniform distribution (yaane zet l probability kellon)
+# histogramme
+hist(X, col="blue", probability=T)
+# estimation par méthode du noyau
+lines(density(X), col="red", lwd=2) # lines lets to draw a curve based on real points
+x=X
+sigma2=N/12
+curve(dnorm(x,mean=N/2,
+            sd=sqrt(sigma2)),add=T, col="green", lwd=2)
+
+
+# La simulation proposée illustre le résultat fondamental du théorème de la limite centrale : une SOMME de variables aléatoires indépendantes et de même loi converge vers une variable aléatoire deloi gaussienne. 
+# Faire varier N=4,8,12,20. Remarquer que la convergence est très rapide. Ceci “justifie” la pratique qui revient à considérer que la loi d’un estimateur est gaussienne lorsque n est “suffisamment” grand avec n >30.
+
+
+---------------------------------------------------------------------
+
+getwd() # Get location where data is collected
+# Change location of where data is collected
+setwd("C:/Users/Christian/Documents/3A Supaero/Certificat Big Data/Module-sensibilisation-master/R")
+
+ls() # see variables in the environment
+rm(a) # remove a variable
+
+nchar(string) # see length of string
+is.charaster(string)
+substr(string,1,3)
+tolower(string)
+toupper(string)
+
+# Concatenate two strings
+paste(string1,string2,sep="-")
+
+(b-3==a) & (b>=a)
+(b ==a) | (b>=a)
+
+is.vector(d)
+
+# Sequence - Suite
+seq(from=1,to=20,by=2)
+
+is.na(d)
+any(is.na(d))
+all.na(is.na(d))
+
+# transpose - transposition
+t(vector)
+vector1 + vector2; vector1 * vector2 # opérations terme à terme
+
+# absolute - sorting - order
+abs(a); sort(a); order(a)
+
+# dimension of a matrix (length - height)
+dim(C)
+D = matrix(runif(16),ncol=4)
+A + B; A * B # terme à terme
+
+# Inverse of a matrix
+solve(matrixA)
+
+A %*% B # produit matriciel
+# diagonal de A (Just gets the terms on the diagonal and puts them in a vector)
+diag(A)
+
+apply(A,2,sum) # *** # fait la somme par colonnes. Si apply(A,1,sum): fait la somme par rangé
+apply(D,1,max)
+apply(D,1,mean)
+
+# eigen values - valeurs propres
+s=eigen(A)
+s$values
+s$vectors
+
+# Matrice 3D ou plus - 3D Matrix or more
+E = array(c(1:8, rep(1,8),seq(0,1,len=8)), dim = c(2,4,3))
+dim(E);length(E)
+nrow(E);ncol(E)
+
+E=array(1:12,c(2,3,2))
+apply(E,1,mean) # mean of rows of all the sub-matrices of 3D matrix
+apply(E,2,mean) # mean of columns of all sub-matrices of 3D matrix
+apply(E,3,mean) # mean of sub-matrices independently of 3D matrix
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+LISTS ARE IMPORTANT
+# list - listes are like objects
+
+x = list("toto",1:8);x
+x[[1]];x[[2]]+1;
+
+y = list(matrice=D,vecteur=f,texte="toto",scalaire=8)
+names(y);y[[1]]
+y$matrice;y$vec
+y[c("texte","scal")] # **
+y[c("texte","scalaire")]
+length(y)
+length(y$vecteur)
+cos(y$scalaire)+y[[2]][1] ### "y[[2]][1]" j'accede le premier element de la list qui est un vecteur dans ce cas, et puis j'accede le premier element de ce vecteur 
+summary(y)
+
+
+
+# data frame - data.frame est un ensemble heterogenes de vecteurs rangés colonne par colonne de même longeur
+
+taille = runif(12,150,180)
+masse = runif(12,50,90)
+sexe = rep(c("M","F","F","M"),3)
+H = data.frame(taille,masse,sexe)
+H;summary(H)
+# analogies entre data.frame, list et matrix
+H[1,];H$taille;H$sexe
+is.data.frame(H)
+is.matrix(H)
+MH = as.matrix(H)
+summary(MH)
+as.list(H)
+
+
+# import data frame - data.frame - dataframe - csv tables
+Tab1 = read.table("Tableau.dat")
+
+fic1=read.table("fic1.csv",sep=",")
+fic1
+fic1b=read.csv("fic1.csv")
+fic1b
+fic1b=read.csv("fic1.csv",header=FALSE)
+fic1b
+ficccc = read.table("ficccc.txt",sep=";",dec=",", header =T) # dec for decimal("." by default not a comma ","), header means like the first row contains titles of the columns
+
+### CSV = COMMA SEPERATED VALUES (american style) example: 3.2,5.4 (in french: 3,2;5,4
+
+# export
+
+A=seq(1,10,l=50)
+write.table(A,"A.txt")
+sink("A2.txt") # début. Exports all print outs in txt file
+A;summary(A)
+sink() # arrêt et fermeture du fichier
+summary(A)
+
+
